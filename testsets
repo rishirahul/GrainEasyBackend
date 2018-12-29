@@ -1,0 +1,74 @@
+{
+  "name": "rishi",
+  "email": "rr@gmail.com",
+  "password": "234678",
+  "phone: "+919731568817}",
+  "pan": "dsfyt3680j"
+  "GST": "243225643",
+  "Addresses": {
+     
+  },
+  "PocName": "ancdd",
+  "PocPhone": "+919731568817",
+  "PocEmail": "rr@gmail.com",
+  "isAdmin": "true",
+  "role": "NEW"
+}
+
+{
+  "name": "rishi",
+  "email": "rr@gmail.com",
+  "password": "234633478",
+  "phone": "+919731568817",
+  "pan": "dsfyt3680j",
+  "GST": "243225643",
+   "Addresses": [{
+     "text": "abcdddd",
+	  "city": {
+    	  "name" : "ranchi",
+    	  "state" : {
+    	  	"name": "jharkhand"
+    	  }
+		},
+	"pin": "834008"
+   }],
+  "PocName": "ancdd",
+  "PocPhone": "+919731568817",
+  "PocEmail": "rr@gmail.com",
+  "isAdmin": "true",
+  "role": "NEW"
+}
+
+{
+    "name" : "rice"
+}
+
+{
+    "name" : "wheat"
+}
+
+{
+  "name": "",
+  "image": "",
+  "category": {
+    "name": ""
+  },
+  "qty": "",
+  "moisture": "",
+  "grainCount": "",
+  "grade": "",
+  "sampleNo": ""
+}
+
+{
+  "name": "basmati",
+  "image": "abc",
+  "category": {
+    "name": "rice"
+  },
+  "qty": "23",
+  "moisture": "33",
+  "grainCount": "232",
+  "grade": "3",
+  "sampleNo": "14334"
+}
