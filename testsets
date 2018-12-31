@@ -40,24 +40,29 @@
 }
 
 {
-    "name" : "rice"
+    "name" : "",
+    "itemnameId" : ""
 }
 
 {
-    "name" : "wheat"
+    "name" : ""
 }
 
 {
-  "name": "",
+    "name" : ""
+    "stateId" :  ""
+}
+
+{
+  "nameId": "",
   "image": "",
-  "category": {
-    "name": ""
-  },
+  "categoryId": ,
   "qty": "",
   "moisture": "",
   "grainCount": "",
   "grade": "",
-  "sampleNo": ""
+  "sampleNo": "",
+  "cityId": ""
 }
 
 {
@@ -72,3 +77,4 @@
   "grade": "3",
   "sampleNo": "14334"
 }
+

@@ -27,7 +27,7 @@ const address = mongoose.model('Address', addressSchema);
 function validateAddress(address) {
   const schema = {
     name: Joi.string().min(5).max(500).required(),
-    city: Joi.Object().required(),
+    city: Joi.object().required(),
     pin: Joi.string().min(6).max(8).required()
   };
 

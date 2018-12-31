@@ -1,15 +1,21 @@
 const express = require('express');
 const users = require('../routes/users');
 const items = require('../routes/items');
+const city = require('../routes/city');
+const state = require('../routes/state');
+const itemName = require('../routes/itemname');
 const categories = require('../routes/categories');
 const auth = require('../routes/auth');
 const error = require('../middleware/error');
 
 module.exports = function(app) {
   app.use(express.json());
-  app.use('/api/users', users);
-  app.use('/api/categories', categories);
-  app.use('/api/items', items);
+  app.use('/api/user', users);
+  app.use('/api/category', categories);
+  app.use('/api/item', items);
+  app.use('/api/itemname', itemName);
+  app.use('/api/city', city);
+  app.use('/api/state', state);
   app.use('/api/auth', auth);
   app.use(error);
 }

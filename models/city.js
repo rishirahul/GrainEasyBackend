@@ -6,9 +6,8 @@ const citySchema = new mongoose.Schema({
   name: {
     type: String,
     required: true,
-    minlength: 5,
-    maxlength: 50,
-    unique: true
+    minlength: 3,
+    maxlength: 50
   },
   state: {
     type: stateModel.stateSchema,
@@ -20,8 +19,8 @@ const City = mongoose.model('City', citySchema);
 
 function validateCity(city) {
   const schema = {
-    name: Joi.string().min(5).max(50).required(),
-    state: Joi.Object().required()
+    name: Joi.string().min(3).max(50).required(),
+    stateId: Joi.objectId().required()
   };
 
   return Joi.validate(city, schema);

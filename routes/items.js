@@ -2,6 +2,8 @@ const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const {Item, validate} = require('../models/item');
 const {Category} = require('../models/category'); 
+const {ItemName} = require('../models/itemname'); 
+const {City} = require('../models/city'); 
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -16,13 +18,21 @@ router.post('/',  async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
   
-  const category = await Category.findOne({ name: req.body.category.name });
+  const category = await Category.findById({ name: req.body.categoryId });
   if (!category) return res.status(400).send('Invalid customer.');
 
-  itemObj = _.pick(req.body, ['name', 'image', 
+  const name = await ItemName.findById(req.body.nameId);
+  if (!name) return res.status(400).send('Invalid category.');
+
+  const city = await City.findById(req.body.cityId);
+  if (!city) return res.status(400).send('Invalid category.');
+
+  let itemObj = _.pick(req.body, ['image', 
   'qty', 'moisture', 'grainCount', 'grade', 'sampleNo']);
 
-  itemObj.category =  category
+  itemObj.category =  category;
+  itemObj.name =  name;
+  itemObj.city =  city;
   let item = new Item(itemObj);
   item = await item.save();
   
@@ -33,19 +43,22 @@ router.put('/:id', async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
   
-  const category = await Category.findById(req.body.categoryId);
+  const category = await Category.findOne({ name: req.body.category.name });
   if (!category) return res.status(400).send('Invalid customer.');
 
-  const itemSubObj = _.pick(req.body, ['name', 'image', 
-  'qty', 'moisture', 'grainCount', 'grade', 'sampleNo',
-  'location'])
+  const name = await ItemName.findById(req.body.nameId);
+  if (!name) return res.status(400).send('Invalid category.');
 
-  const categoryObj = {
-    _id: category._id,
-    name: category.name,
-  }
+  const city = await City.findById(req.body.cityId);
+  if (!city) return res.status(400).send('Invalid category.');
 
-  const itemObj = _.assign({}, itemObj, categoryObj);
+  itemObj = _.pick(req.body, ['name', 'image', 
+  'qty', 'moisture', 'grainCount', 'grade', 'sampleNo']);
+
+  itemObj.category =  category;
+  itemObj.name =  name;
+  itemObj.city =  city;
+  
   const item = await Item.findByIdAndUpdate(req.params.id, itemObj, {
     new: true
   });

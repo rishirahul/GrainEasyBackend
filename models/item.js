@@ -4,15 +4,14 @@ const mongoose = require('mongoose');
 const address = require('./address');
 const category = require('./category');
 const user = require('./user');
-
+const itemname = require('./itemname');
+const city = require('./city');
 
 const itemSchema = new mongoose.Schema({
-  // name: {
-  //   type: String,
-  //   required: true,
-  //   minlength: 3,
-  //   maxlength: 50
-  // },
+  name: {
+    type: itemname.itemnameSchema,
+    required: true
+  },
   image: {
     type: String,
     required: true
@@ -40,41 +39,46 @@ const itemSchema = new mongoose.Schema({
   sampleNo: {
     type: Number,
     required: true
+  },
+  city: {
+    type: city.citySchema,
+    required: true
+  },
+  address: {
+    type: address.addressSchema,
+    required: false
+  },
+  seller: {
+    type: user.userSchema,
+    required: false
+  },
+  origin: {
+    type: String,
+    required: false
+  },
+  isLive: {
+    type: Boolean,
+    required: false
   }
-  // location: {
-  //   type: address.addressSchema,
-  //   required: true
-  // }
-  // seller: {
-  //   type: user.userSchema,
-  //   required: true
-  // }
-  // tax: {
-  //   type: Number,
-  //   required: true
-  // }
-  // origin: {
-  //   type: Number,
-  //   required: true
-  // }
-  // isLive: {
-  // }
 });
 
 const Item = mongoose.model('Item', itemSchema);
 
 function validateItem(item) {
   const schema = {
-    name: Joi.string().min(3).max(50).required(),
+    nameId: Joi.objectId().required(),
     image: Joi.string().required(),
-    category: Joi.object().required(),
+    categoryId: Joi.objectId().required(),
     qty: Joi.number().required(),
     moisture: Joi.number().required(),
     grainCount: Joi.number().required(),
     grade: Joi.number().required(),
     sampleNo: Joi.number().required(),
-    // location: Joi.object().required(),
-    // seller: Joi.object().required(),
+    cityId: Joi.objectId().required(),
+    addressId: Joi.objectId().optional(),
+    sellerId: Joi.objectId().optional(),
+    origin: Joi.string().optional(),
+    isLive: Joi.string().optional(),
     // insurance: Joi.object().required(),
     // tax: Joi.object().required()
   };

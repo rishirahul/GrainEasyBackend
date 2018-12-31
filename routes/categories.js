@@ -1,9 +1,11 @@
 const auth = require('../middleware/auth');
 const admin = require('../middleware/admin');
 const {Category, validate} = require('../models/category');
+const {ItemName} = require('../models/itemname'); 
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
+const _ = require('lodash');
 
 router.get('/', async (req, res) => {
   const state = await Category.find().sort('name');
@@ -14,9 +16,14 @@ router.post('/', async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
-  let category = new Category({ name: req.body.name });
+  const itemName = await ItemName.findById(req.body.itemnameId);
+  if (!itemName) return res.status(400).send('Invalid state.');
+
+   let categoryObj = _.pick(req.body, ['name']);
+  categoryObj.itemname = itemName;
+
+  let category = new Category(categoryObj);
   category = await category.save();
-  
   res.send(category);
 });
 
