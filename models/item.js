@@ -33,11 +33,11 @@ const itemSchema = new mongoose.Schema({
     required: true
   },
   grade: {
-    type: Number,
+    type: String,
     required: true
   },
   sampleNo: {
-    type: Number,
+    type: String,
     required: true
   },
   city: {
@@ -72,8 +72,8 @@ function validateItem(item) {
     qty: Joi.number().required(),
     moisture: Joi.number().required(),
     grainCount: Joi.number().required(),
-    grade: Joi.number().required(),
-    sampleNo: Joi.number().required(),
+    grade: Joi.string().required(),
+    sampleNo: Joi.string().required(),
     cityId: Joi.objectId().required(),
     addressId: Joi.objectId().optional(),
     sellerId: Joi.objectId().optional(),

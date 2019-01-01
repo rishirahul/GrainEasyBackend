@@ -54,8 +54,44 @@
 }
 
 {
+  "nameId": "5c2a55c6ef3fce441cbb95a6",
+  "image": "https://res.cloudinary.com/dkhlc6xlj/image/upload/v1546366299/GrainEasy/items/toor-dal-800x800.jpg",
+  "categoryId": ,
+  "qty": "",
+  "moisture": "",
+  "grainCount": "",
+  "grade": "",
+  "sampleNo": "",
+  "cityId": ""
+}
+
+{
+  "nameId": "5c2a55c6ef3fce441cbb95a6",
+  "image": "https://res.cloudinary.com/dkhlc6xlj/image/upload/v1546366298/GrainEasy/items/tuar-dal-1363073.jpg",
+  "categoryId": ,
+  "qty": "",
+  "moisture": "",
+  "grainCount": "",
+  "grade": "",
+  "sampleNo": "",
+  "cityId": ""
+}
+
+{
+  "nameId": "5c2a55c6ef3fce441cbb95a6",
+  "image": "https://res.cloudinary.com/dkhlc6xlj/image/upload/v1546366298/GrainEasy/items/toor-dal-500x500.jpg",
+  "categoryId": ,
+  "qty": "",
+  "moisture": "",
+  "grainCount": "",
+  "grade": "",
+  "sampleNo": "",
+  "cityId": ""
+}
+
+{
   "nameId": "",
-  "image": "",
+  "image": "https://res.cloudinary.com/dkhlc6xlj/image/upload/v1546366297/GrainEasy/items/gh-arhar-dal-toor-dal-500gm_1-800x800.jpg",
   "categoryId": ,
   "qty": "",
   "moisture": "",

@@ -10,7 +10,7 @@ const router = express.Router();
 const _ = require('lodash');
 
 router.get('/', async (req, res) => {
-  const item = await Item.find().sort('name');
+  const item = await Item.find().sort('price');
   res.send(item);
 });
 
@@ -18,7 +18,7 @@ router.post('/',  async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
   
-  const category = await Category.findById({ name: req.body.categoryId });
+  const category = await Category.findById(req.body.categoryId);
   if (!category) return res.status(400).send('Invalid customer.');
 
   const name = await ItemName.findById(req.body.nameId);

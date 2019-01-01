@@ -7,9 +7,15 @@ const itemName = require('../routes/itemname');
 const categories = require('../routes/categories');
 const auth = require('../routes/auth');
 const error = require('../middleware/error');
+const cors = require('cors');
+
+var corsOptions = {
+  origin: 'http://localhost:4200'
+}
 
 module.exports = function(app) {
   app.use(express.json());
+  app.use(cors(corsOptions))
   app.use('/api/user', users);
   app.use('/api/category', categories);
   app.use('/api/item', items);
