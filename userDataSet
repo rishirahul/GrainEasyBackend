@@ -1,0 +1,50 @@
+  {
+    "name": "Ashutosh Joshi",
+    "email": "ashutosh@gmail.com",
+    "password": "admin@8340445819",
+    "phone": "+918340445819",
+    "pan": "abcd456e",
+    "GST": "abcd456e",
+    "Address": "Koramangala",
+    "cityId": "5c2a55abef3fce441cbb95a4",
+     "pin": "560018",
+    "PocName": "",
+    "PocPhone": "",
+    "PocEmail": "",
+    "isSeller": "",
+    "isBuyer": ""
+  }
+
+  {
+    "name": "Rishi Rahul",
+    "email": "rishir@gmail.com",
+    "password": "admin@9731568817",
+    "phone": "+919731568817",
+    "pan": "abcd456e",
+    "GST": "abcd456e",
+    "Address": "Koramangala",
+    "cityId": "5c2a55abef3fce441cbb95a4",
+    "pin": "560018",
+    "PocName": "",
+    "PocPhone": "",
+    "PocEmail": "",
+    "isSeller": "",
+    "isBuyer": "true"
+  }
+
+  {
+    "name": "Rahul",
+    "email": "Rahul@gmail.com",
+    "password": "admin@9731568818",
+    "phone": "+919731568818",
+    "pan": "abcd456e",
+    "GST": "abcd456e",
+    "Address":  "Koramangala",
+    "cityId": "5c2a55abef3fce441cbb95a4",
+    "pin": "560018",
+    "PocName": "",
+    "PocPhone": "",
+    "PocEmail": "",
+    "isSeller": "true",
+    "isBuyer": ""
+  }

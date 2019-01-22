@@ -1,5 +1,5 @@
 const auth = require('../middleware/auth');
-const admin = require('../middleware/admin');
+const permit = require('../middleware/permissions');
 const {State, validate} = require('../models/state');
 const mongoose = require('mongoose');
 const express = require('express');
@@ -11,7 +11,7 @@ router.get('/', async (req, res) => {
   res.send(state);
 });
 
-router.post('/', async (req, res) => {
+router.post('/', [auth, permit('admin')], async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
   res.send(state);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', [auth, permit('admin')], async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
 
@@ -36,7 +36,7 @@ router.put('/:id', async (req, res) => {
   res.send(state);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', [auth, permit('admin')], async (req, res) => {
   const state = await State.findByIdAndRemove(req.params.id);
 
   if (!state) return res.status(404).send('The genre with the given ID was not found.');

@@ -1,9 +1,11 @@
 const auth = require('../middleware/auth');
-const admin = require('../middleware/admin');
+const permit = require('../middleware/permissions');
 const {Item, validate} = require('../models/item');
 const {Category} = require('../models/category'); 
 const {ItemName} = require('../models/itemname'); 
 const {City} = require('../models/city'); 
+const {User} = require('../models/user'); 
+const {Address, validateAddress} = require('../models/address');
 const mongoose = require('mongoose');
 const express = require('express');
 const router = express.Router();
@@ -14,7 +16,7 @@ router.get('/', async (req, res) => {
   res.send(item);
 });
 
-router.post('/',  async (req, res) => {
+router.post('/', [auth, permit('seller', 'admin')],  async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
   
@@ -27,19 +29,27 @@ router.post('/',  async (req, res) => {
   const city = await City.findById(req.body.cityId);
   if (!city) return res.status(400).send('Invalid category.');
 
+  const address = await Address.findById(req.body.addressId);
+  if (!address) return res.status(400).send('Invalid category.');
+
+  const seller = await User.findById(req.body.sellerId);
+  if (!seller) return res.status(400).send('Invalid category.');
+
   let itemObj = _.pick(req.body, ['image', 
-  'qty', 'moisture', 'grainCount', 'grade', 'sampleNo']);
+  'qty', 'price', 'moisture', 'grainCount', 'grade', 'sampleNo', 'origin', 'isLive']);
 
   itemObj.category =  category;
   itemObj.name =  name;
   itemObj.city =  city;
+  itemObj.address =  address;
+  itemObj.seller =  seller;
   let item = new Item(itemObj);
   item = await item.save();
   
   res.send(item);
 });
 
-router.put('/:id', async (req, res) => {
+router.put('/:id', [auth, permit('seller', 'admin')], async (req, res) => {
   const { error } = validate(req.body); 
   if (error) return res.status(400).send(error.details[0].message);
   
@@ -52,12 +62,20 @@ router.put('/:id', async (req, res) => {
   const city = await City.findById(req.body.cityId);
   if (!city) return res.status(400).send('Invalid category.');
 
+  const address = await Address.findById(req.body.addressId);
+  if (!address) return res.status(400).send('Invalid category.');
+
+  const seller = await User.findById(req.body.sellerId);
+  if (!seller) return res.status(400).send('Invalid category.');
+
   itemObj = _.pick(req.body, ['name', 'image', 
-  'qty', 'moisture', 'grainCount', 'grade', 'sampleNo']);
+  'qty', 'price', 'moisture', 'grainCount', 'grade', 'sampleNo', 'origin', 'isLive']);
 
   itemObj.category =  category;
   itemObj.name =  name;
   itemObj.city =  city;
+  itemObj.address =  address;
+  itemObj.seller =  seller;
   
   const item = await Item.findByIdAndUpdate(req.params.id, itemObj, {
     new: true
@@ -68,7 +86,7 @@ router.put('/:id', async (req, res) => {
   res.send(item);
 });
 
-router.delete('/:id', async (req, res) => {
+router.delete('/:id', [auth, permit('admin')], async (req, res) => {
   const item = await Item.findByIdAndRemove(req.params.id);
 
   if (!item) return res.status(404).send('The item with the given ID was not found.');
@@ -76,7 +94,7 @@ router.delete('/:id', async (req, res) => {
   res.send(item);
 });
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', [auth], async (req, res) => {
   const item = await Item.findById(req.params.id);
 
   if (!item) return res.status(404).send('The item with the given ID was not found.');

@@ -10,39 +10,43 @@ const city = require('./city');
 const itemSchema = new mongoose.Schema({
   name: {
     type: itemname.itemnameSchema,
-    required: true
+    required: false
   },
   image: {
     type: String,
-    required: true
+    required: false
   },
   category: {
     type: category.categorySchema,
-    required: true
+    required: false
   },
   qty: {
     type: Number,
-    required: true
+    required: false
+  },
+  price: {
+    type: Number,
+    required: false
   },
   moisture: {
     type: Number,
-    required: true
+    required: false
   },
   grainCount: {
     type: Number,
-    required: true
+    required: false
   },
   grade: {
     type: String,
-    required: true
+    required: false
   },
   sampleNo: {
     type: String,
-    required: true
+    required: false
   },
   city: {
     type: city.citySchema,
-    required: true
+    required: false
   },
   address: {
     type: address.addressSchema,
@@ -70,17 +74,16 @@ function validateItem(item) {
     image: Joi.string().required(),
     categoryId: Joi.objectId().required(),
     qty: Joi.number().required(),
+    price: Joi.number().required(),
     moisture: Joi.number().required(),
     grainCount: Joi.number().required(),
     grade: Joi.string().required(),
     sampleNo: Joi.string().required(),
     cityId: Joi.objectId().required(),
-    addressId: Joi.objectId().optional(),
-    sellerId: Joi.objectId().optional(),
+    addressId: Joi.objectId().required(),
+    sellerId: Joi.objectId().required(),
     origin: Joi.string().optional(),
-    isLive: Joi.string().optional(),
-    // insurance: Joi.object().required(),
-    // tax: Joi.object().required()
+    isLive: Joi.string().optional()
   };
 
   return Joi.validate(item, schema);

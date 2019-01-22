@@ -1,6 +1,7 @@
 const express = require('express');
 const users = require('../routes/users');
 const items = require('../routes/items');
+const orders = require('../routes/orders');
 const city = require('../routes/city');
 const state = require('../routes/state');
 const itemName = require('../routes/itemname');
@@ -19,6 +20,7 @@ module.exports = function(app) {
   app.use('/api/user', users);
   app.use('/api/category', categories);
   app.use('/api/item', items);
+  app.use('/api/order', orders);
   app.use('/api/itemname', itemName);
   app.use('/api/city', city);
   app.use('/api/state', state);

@@ -1,18 +1,165 @@
+============= state ========================
+------ C ---- admin 
+  {
+      "name" : ""
+  }
+------ R
+------ U ----- admin
+  {
+    "name" : ""
+  }
+------ D ---- admin 
+=============== city ========================
+------ C ----- admin
+  {
+    "name" : ""
+    "stateId" :  ""
+  }
+------ R
+------ U  ---- admin 
+  {
+    "name" : ""
+    "stateId" :  ""
+  }
+------ D ---- admin 
+=============== name ========================
+------ C ---- admin 
+  {
+      "name" : ""
+  }
+------ R
+------ U ---- admin 
+  {
+      "name" : ""
+  }
+------ D ---- admin 
+=============== category ====================
+------ C ---- admin 
+  {
+    "name" : "",
+    "itemnameId" : ""
+  }
+------ R
+------ U ---- admin 
+  {
+    "name" : "",
+    "itemnameId" : ""
+  }
+------ D ---- admin 
+=============== user =========================
+------ C 
+  {
+    "name": "",
+    "email": "",
+    "password": "",
+    "phone: "",
+    "pan": ""
+    "GST": "",
+    "Address" : "",
+    "cityId": "",
+    "pin": "",
+    "PocName": "",
+    "PocPhone": "",
+    "PocEmail": "",
+    "isSeller": "",
+    "isBuyer": ""
+  }
+------ R
+------ U ---- user 
+  {
+    "name": "",
+    "email": "",
+    "password": "",
+    "phone: "",
+    "pan": ""
+    "GST": "",
+    "PocName": "",
+    "PocPhone": "",
+    "PocEmail": "",
+    "isSeller": "",
+    "isBuyer": ""
+  }
+------ D ---- admin 
+================ item ========================
+------ C --- seller,admin
+  {
+    "nameId": "",
+    "image": "",
+    "categoryId": "",
+    "price":"",
+    "qty": "",
+    "moisture": "",
+    "grainCount": "",
+    "grade": "",
+    "sampleNo": "",
+    "cityId": "",
+    "sellerId": "",
+    "origin": "",
+  }
+------ R
+------ U ---- user 
+  {
+    "nameId": "",
+    "image": "",
+    "categoryId": ,
+    "qty": "",
+    "moisture": "",
+    "grainCount": "",
+    "grade": "",
+    "sampleNo": "",
+    "cityId": "",
+    "addressId": "",
+    "sellerId": "",
+    "origin": "",
+    "isLive": ""
+  }
+------ D ---- admin 
+==============  order ==========================
+------ C --- buyer
+  {    
+    itemId: ,
+    quantity: ,
+    cost: ,
+    addressId: ,
+    buyerId: ,
+    sellerId: ,
+    placedTime: ,
+    confirmedTime: ,
+    shipmentTime: ,
+    receivedTime: ,
+    paymentMode: 
+  }
+  ------ R ---- user
+  ------ U ---- admin
+  ------ D ---- admin 
+
+=================================== DATA ===============================
+
+
 {
-  "name": "rishi",
-  "email": "rr@gmail.com",
-  "password": "234678",
-  "phone: "+919731568817}",
-  "pan": "dsfyt3680j"
-  "GST": "243225643",
-  "Addresses": {
-     
-  },
-  "PocName": "ancdd",
-  "PocPhone": "+919731568817",
-  "PocEmail": "rr@gmail.com",
-  "isAdmin": "true",
-  "role": "NEW"
+  "phone":  "+919731568818",
+  "name":   "Raja Singh",
+  "email":  "raja@gmail.com",
+  "password":   "22332233",
+  "pan":    "fdg3436y",
+  ""
+  "address":    "#24, bhoot bangla",
+  "cityId":   "5c2a53cfef3fce441cbb959a",
+  "stateId":  "",
+  "pin":    "834008"
+}
+
+
+{
+  "phone":  "+919731568818",
+  "name":   "Raja Singh",
+  "email":  "raja@gmail.com",
+  "password":   "22332233",
+  "pan":    "fdg3436y",
+  "address":    "#24, bhoot bangla",
+  "cityId":   "5c2a53cfef3fce441cbb959a",
+  "stateId":  "",
+  "pin":    "834008"
 }
 
 {
@@ -39,19 +186,13 @@
   "role": "NEW"
 }
 
-{
-    "name" : "",
-    "itemnameId" : ""
-}
+
 
 {
     "name" : ""
 }
 
-{
-    "name" : ""
-    "stateId" :  ""
-}
+
 
 {
   "nameId": "5c2a55c6ef3fce441cbb95a6",
@@ -70,6 +211,7 @@
   "image": "https://res.cloudinary.com/dkhlc6xlj/image/upload/v1546366298/GrainEasy/items/tuar-dal-1363073.jpg",
   "categoryId": ,
   "qty": "",
+  "
   "moisture": "",
   "grainCount": "",
   "grade": "",
