@@ -127,7 +127,8 @@
     confirmedTime: ,
     shipmentTime: ,
     receivedTime: ,
-    paymentMode: 
+    paymentMode: ,
+    status:  
   }
   ------ R ---- user
   ------ U ---- admin

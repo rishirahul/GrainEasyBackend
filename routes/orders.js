@@ -46,29 +46,20 @@ router.post('/', [auth, permit('buyer', 'admin')],  async (req, res) => {
 });
 
 router.put('/:id', [auth, permit('buyer', 'admin')], async (req, res) => {
-  const { error } = validate(req.body); 
-  if (error) return res.status(400).send(error.details[0].message);
-  
-  const item = await Item.findById(req.body.itemId);
-  if (!item) return res.status(400).send('Invalid customer.');
 
-  const address = await Address.findById(req.body.addressId);
-  if (!address) return res.status(400).send('Invalid category.');
+  if (req.body.addressId) {
+    const address = await Address.findById(req.body.addressId);
+    if (!address) return res.status(400).send('Invalid category.');
+  }
 
-  const buyer = await User.findById(req.body.buyerId);
-  if (!buyer) return res.status(400).send('Invalid category.');
-
-  const seller = await User.findById(req.body.sellerId);
-  if (!seller) return res.status(400).send('Invalid category.');
 
   let orderObj = _.pick(req.body, ['quantity', 
   'cost', 'placedTime', 'confirmedTime', 'shipmentTime', 
   'receivedTime', 'paymentMode', 'status']);
 
-  orderObj.item =  item;
-  orderObj.address =  address;
-  orderObj.buyer =  buyer;
-  orderObj.seller =  seller;
+  if (req.body.addressId) {
+    orderObj.address =  address;
+  }
   
   const order = await Order.findByIdAndUpdate(req.params.id, orderObj, {
     new: true
@@ -87,8 +78,22 @@ router.delete('/:id', [auth, permit('admin')], async (req, res) => {
   res.send(order);
 });
 
-router.get('/:id', [auth], async (req, res) => {
+router.get('/id/:id', [auth], async (req, res) => {
   const order = await Order.findById(req.params.id);
+
+  if (!order) return res.status(404).send('The item with the given ID was not found.');
+
+  res.send(order);
+});
+
+router.get('/user/:id', [auth], async (req, res) => {
+  // const order = await Order.findById(req.params.id);
+  
+  const customer = await User.findById(req.params.id);
+  console.log(req.params.id);
+  console.log(customer);
+  if (!customer) return res.status(400).send('Invalid buyer.');
+  const order = await Order.find({buyer: customer}).sort('placedTime');
 
   if (!order) return res.status(404).send('The item with the given ID was not found.');
 
