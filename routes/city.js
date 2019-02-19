@@ -21,6 +21,9 @@ router.post('/', [auth, permit('admin')], async (req, res) => {
 
   let cityObj = _.pick(req.body, ['name']);
   cityObj.state = state;
+  cityObj.loadingPerKg = 0;
+  cityObj.unloadingPerKg = 0;
+  cityObj.packagingPerKg = 0;
 
   let city = new City(cityObj);
   city = await city.save();

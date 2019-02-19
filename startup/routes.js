@@ -7,6 +7,7 @@ const state = require('../routes/state');
 const itemName = require('../routes/itemname');
 const categories = require('../routes/categories');
 const auth = require('../routes/auth');
+const price = require('../routes/price');
 const error = require('../middleware/error');
 const cors = require('cors');
 
@@ -25,5 +26,6 @@ module.exports = function(app) {
   app.use('/api/city', city);
   app.use('/api/state', state);
   app.use('/api/auth', auth);
+  app.use('/api/price', price);
   app.use(error);
 }

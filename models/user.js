@@ -63,6 +63,46 @@ const userSchema = new mongoose.Schema({
     minlength: 5,
     maxlength: 100
   },
+  sellerFeePerKg: {
+    type:Number,
+    required: false,
+  },
+  buyerCreditCostPercent: {
+    type:Number,
+    required: false,
+  },
+  buyerBackMarginPercent: {
+    type:Number,
+    required: false,
+  },
+  buyerNetLossPercent: {
+    type:Number,
+    required: false,
+  },
+  buyerDiscount1Percent: {
+    type:Number,
+    required: false,
+  },
+  buyerDiscount2PerKg: {
+    type:Number,
+    required: false,
+  },
+  buyerDiscount3Lumpsump: {
+    type:Number,
+    required: false,
+  },
+  buyerMarginPerKg: {
+    type:Number,
+    required: false,
+  },
+  buyerFeePerKg: {
+    type:Number,
+    required: false,
+  },
+  buyerFinePerKg: {
+    type:Number,
+    required: false,
+  },
   isAdmin: Boolean,
   isSeller: Boolean,
   isBuyer: Boolean,
@@ -95,7 +135,17 @@ function validateUser(user) {
     isSeller: Joi.boolean().optional(),
     isBuyer: Joi.boolean().optional(),
     isEmpL0: Joi.boolean().optional(),
-    isEmpL1: Joi.boolean().optional()
+    isEmpL1: Joi.boolean().optional(),
+    sellerFeePerKg: Joi.number().optional(),
+    buyerBackMarginPercent: Joi.number().optional(),
+    buyerCreditCostPercent: Joi.number().optional(),
+    buyerFeePerKg: Joi.number().optional(),
+    buyerNetLossPercent: Joi.number().optional(),
+    buyerMarginPerKg: Joi.number().optional(),
+    buyerDiscount1Percent: Joi.number().optional(),
+    buyerDiscount2PerKg: Joi.number().optional(),
+    buyerDiscount3Lumpsump: Joi.number().optional(),
+    buyerFinePerKg: Joi.number().optional()
   };
 
   return Joi.validate(user, schema);

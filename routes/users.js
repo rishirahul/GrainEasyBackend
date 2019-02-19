@@ -59,6 +59,18 @@ router.post('/', async (req, res) => {
   user.Addresses.push(address);
   const salt = await bcrypt.genSalt(10);
   user.password = await bcrypt.hash(user.password, salt);
+
+  user.sellerFeePerKg = 0;
+  user.buyerBackMarginPercent = 0;
+  user.buyerCreditCostPercent = 0;
+  user.buyerFeePerKg = 0;
+  user.buyerNetLossPercent = 0;
+  user.buyerMarginPerKg = 0;
+  user.buyerDiscount1Percent = 0;
+  user.buyerDiscount2PerKg = 0;
+  user.buyerDiscount3Lumpsump = 0;
+  user.buyerFinePerKg = 0;
+
   await user.save();
 
   const token = user.generateAuthToken();
