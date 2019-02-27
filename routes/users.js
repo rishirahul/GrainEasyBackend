@@ -70,6 +70,7 @@ router.post('/', async (req, res) => {
   user.buyerDiscount2PerKg = 0;
   user.buyerDiscount3Lumpsump = 0;
   user.buyerFinePerKg = 0;
+  user.isSeller = false;
 
   await user.save();
 
