@@ -93,7 +93,13 @@ router.get('/user/:id', [auth], async (req, res) => {
   console.log(req.params.id);
   console.log(customer);
   if (!customer) return res.status(400).send('Invalid buyer.');
-  const order = await Order.find({buyer: customer}).sort('placedTime');
+  let order = null;
+  if (customer.isSeller) {
+    order = await Order.find({seller: customer}).sort({'placedTime':-1});
+  }
+  else {
+    order = await Order.find({buyer: customer}).sort({'placedTime':-1});
+  }
 
   if (!order) return res.status(404).send('The item with the given ID was not found.');
 
