@@ -8,7 +8,12 @@ const router = express.Router();
 const _ = require('lodash');
 
 router.get('/', async (req, res) => {
-  const state = await Category.find().sort('name');
+  const itemnameId = req.query.name;
+  filter = {};
+  if (itemnameId) {
+    filter['itemname._id'] = itemnameId;
+  }
+  const state = await Category.find(filter).sort('name');
   res.send(state);
 });
 
@@ -47,6 +52,7 @@ router.delete('/:id', [auth, permit('admin')], async (req, res) => {
 
   res.send(category);
 });
+
 
 router.get('/:id', async (req, res) => {
   const category = await Category.findById(req.params.id);

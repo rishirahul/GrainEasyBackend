@@ -12,7 +12,25 @@ const router = express.Router();
 const _ = require('lodash');
 
 router.get('/', async (req, res) => {
-  const item = await Item.find().sort('price');
+  console.log (req.query);
+  const itemnameId = req.query.name;
+  const catId = req.query.cat;
+  const cityId = req.query.origin;
+  const grade = req.query.grade;
+  filter = {};
+  if (itemnameId) {
+    filter['name._id'] = itemnameId;
+  }
+  if (itemnameId) {
+    filter['category._id'] = catId;
+  }
+  if (cityId) {
+    filter['address.city._id'] = cityId;
+  }
+  if (grade) {
+    filter['grade'] = grade;
+  }
+  const item = await Item.find(filter).sort('price');
   res.send(item);
 });
 

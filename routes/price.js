@@ -43,7 +43,7 @@ router.post('/', [auth],  async (req, res) => {
   let P1 = quantity * (sellingPrice + /*transporationPerKg +*/ loadingPerKg + unloadingPerKg + packagingPerKg
                     + buyerFinePerKg);
   let P2 = P1 * (1 + (buyerCreditCostPercent/100));
-  let P_invoice_rate = P2 * (1 + ((sellerFeePerKg + buyerFeePerKg + buyerMarginPerKg)/100));
+  let P_invoice_rate = P2 + ((sellerFeePerKg + buyerFeePerKg + buyerMarginPerKg) * quantity);
   /********************************/
   let Num = ((P_invoice_rate * quantity) + (buyerDiscount2PerKg * quantity_dash) + buyerDiscount3Lumpsump) ;
   let Den = ((quantity_dash) - ((buyerBackMarginPercent + buyerDiscount1Percent)* quantity_dash));
