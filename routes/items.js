@@ -23,11 +23,11 @@ router.get('/', async (req, res) => {
   if (itemnameId) {
     filter['name._id'] = itemnameId;
   }
-  if (itemnameId) {
+  if (catId) {
     filter['category._id'] = catId;
   }
   if (cityId) {
-    filter['address.city._id'] = cityId;
+    filter['city._id'] = cityId;
   }
   if (grade) {
     filter['grade'] = grade;
